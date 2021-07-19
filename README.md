@@ -8,6 +8,11 @@
 
 Scan Kit支持Android和iOS系统集成。其中，Android系统集成Scan Kit后支持横屏扫码能力。
 
+## 展示
+
+<img src=".\image\scan_kit_example.jpg" width="30%" height="30%">
+
+
 ## 支持的设备
 - Android 4.4及以上
 - iOS 9.0及以上 开发中
@@ -47,5 +52,4 @@ class ScanResult {
   List<int>? valueByte;
 }
 ~~~
-
 
