@@ -35,12 +35,14 @@ Scan Kit可以直接返回码的原始内容，也可以针对使用特定内容
 import 'package:flutter_scan_kit/flutter_scan_kit.dart';
 import 'package:flutter_scan_kit/scan_result.dart';
 
+///扫码
 ScanResult? _scanResult;
 Future<void> scan() async {
     _scanResult = await FlutterScanKit.scan;
     setState(() {});
 }
 
+///扫码结果
 class ScanResult {
   /// 扫码结果信息
   ScanType? scanType;
@@ -50,6 +52,20 @@ class ScanResult {
   String? value;
   /// 非UTF-8格式的条码使用
   List<int>? valueByte;
+}
+
+///生成条码
+Future<void> generateCode() async {
+  var bytes = await rootBundle.load("assets/images/ic_logo.png");
+  _code = await FlutterScanKit.generateCode(
+    content: "这是条码",
+    type: ScanType.QRCODE_SCAN_TYPE,
+    width: 300,
+    height: 300,
+    color: "#7CB342",
+    logo: bytes.buffer.asUint8List(),
+  );
+  setState(() {});
 }
 ~~~
 

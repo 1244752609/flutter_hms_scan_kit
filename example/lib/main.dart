@@ -64,7 +64,6 @@ class _MyAppState extends State<MyApp> {
       color: "#7CB342",
       logo: bytes.buffer.asUint8List(),
     );
-    Colors.lightGreen;
     setState(() {});
   }
 
