@@ -88,9 +88,12 @@ class FlutterScanKitPlugin : FlutterPlugin, MethodCallHandler, ActivityAware {
      */
     private fun requestPermission() {
         ActivityCompat.requestPermissions(
-                activity!!, arrayOf(Manifest.permission.CAMERA, Manifest.permission.READ_EXTERNAL_STORAGE,
-                Manifest.permission.WRITE_EXTERNAL_STORAGE),
-                CAMERA_REQ_CODE)
+            activity!!, arrayOf(
+                Manifest.permission.CAMERA, Manifest.permission.READ_EXTERNAL_STORAGE,
+                Manifest.permission.WRITE_EXTERNAL_STORAGE
+            ),
+            CAMERA_REQ_CODE
+        )
     }
 
     private fun onRequestPermissionsResultListener(binding: ActivityPluginBinding) {
@@ -103,7 +106,11 @@ class FlutterScanKitPlugin : FlutterPlugin, MethodCallHandler, ActivityAware {
             }
             //Default View Mode
             if (requestCode == CAMERA_REQ_CODE) {
-                ScanUtil.startScan(activity, REQUEST_CODE_SCAN, HmsScanAnalyzerOptions.Creator().create())
+                ScanUtil.startScan(
+                    activity,
+                    REQUEST_CODE_SCAN,
+                    HmsScanAnalyzerOptions.Creator().create()
+                )
             }
             false
         }
@@ -122,9 +129,11 @@ class FlutterScanKitPlugin : FlutterPlugin, MethodCallHandler, ActivityAware {
                     map["scanType"] = obj.getScanType()
                     map["scanTypeForm"] = obj.getScanTypeForm()
                     //获取条码原始的全部码值信息。只有当条码编码格式为UTF-8时才可以使用
-                    map["value"] = obj.getOriginalValue()
+                    if (obj.getOriginalValue() != null)
+                        map["value"] = obj.getOriginalValue()
                     //非UTF-8格式的条码使用
-                    map["valueByte"] = obj.getOriginValueByte()
+                    if (obj.getOriginValueByte() != null)
+                        map["valueByte"] = obj.getOriginValueByte()
                     result!!.success(map)
                 } else {
                     result!!.success(HashMap<Any, Any>())
@@ -138,9 +147,9 @@ class FlutterScanKitPlugin : FlutterPlugin, MethodCallHandler, ActivityAware {
      * 生成条码
      */
     private fun generateCode(
-            content: String? = "", type: Int?,
-            width: Int?, height: Int?, color: String?,
-            logo: ByteArray?
+        content: String? = "", type: Int?,
+        width: Int?, height: Int?, color: String?,
+        logo: ByteArray?
     ) {
         if (content == null || content.isEmpty()) {
             Toast.makeText(activity, "请输入生成内容", Toast.LENGTH_SHORT).show()
@@ -149,7 +158,7 @@ class FlutterScanKitPlugin : FlutterPlugin, MethodCallHandler, ActivityAware {
         try {
             //Generate the barcode.
             val options = HmsBuildBitmapOption.Creator()
-                    .setBitmapBackgroundColor(Color.WHITE)
+                .setBitmapBackgroundColor(Color.WHITE)
             if (color != null && color.length == 7) {
                 val codeColor: Int = Color.parseColor(color)
                 options.setBitmapColor(codeColor)
@@ -157,8 +166,10 @@ class FlutterScanKitPlugin : FlutterPlugin, MethodCallHandler, ActivityAware {
             if (logo != null && logo.isNotEmpty()) {
                 options.setQRLogoBitmap(byte2Bitmap(logo))
             }
-            val bitmap = ScanUtil.buildBitmap(content, type ?: HmsScan.QRCODE_SCAN_TYPE,
-                    width ?: 500, height ?: 500, options.create())
+            val bitmap = ScanUtil.buildBitmap(
+                content, type ?: HmsScan.QRCODE_SCAN_TYPE,
+                width ?: 500, height ?: 500, options.create()
+            )
             val map: MutableMap<String, Any> = HashMap()
             map["code"] = bitmap2Byte(bitmap)
             result!!.success(map)

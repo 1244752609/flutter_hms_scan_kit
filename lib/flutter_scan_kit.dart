@@ -17,8 +17,10 @@ class FlutterScanKit {
     var result = await _channel.invokeMethod('startScan') as Map;
     final scanType = result['scanType'] as int;
     final scanTypeForm = result['scanTypeForm'] as int;
-    final value = result['value'] as String;
-    final valueByte = result['valueByte'] as List<int>;
+    final value =
+        result['valueByte'] != null ? result['value'] as String : null;
+    final valueByte =
+        result['valueByte'] != null ? result['valueByte'] as List<int> : null;
     print("========> scanType: $scanType");
     print("========> scanTypeForm: $scanTypeForm");
     print("========> value: $value");
