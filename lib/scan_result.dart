@@ -14,31 +14,31 @@ class ScanResult {
 
 ScanType getScanType(int type) {
   switch (type) {
-    case 0:
-      return ScanType.QRCODE_SCAN_TYPE;
     case 1:
-      return ScanType.AZTEC_SCAN_TYPE;
+      return ScanType.QRCODE_SCAN_TYPE;
     case 2:
-      return ScanType.DATAMATRIX_SCAN_TYPE;
-    case 3:
-      return ScanType.PDF417_SCAN_TYPE;
+      return ScanType.AZTEC_SCAN_TYPE;
     case 4:
-      return ScanType.CODE39_SCAN_TYPE;
-    case 5:
-      return ScanType.CODE93_SCAN_TYPE;
-    case 6:
-      return ScanType.CODE128_SCAN_TYPE;
-    case 7:
-      return ScanType.EAN13_SCAN_TYPE;
+      return ScanType.DATAMATRIX_SCAN_TYPE;
     case 8:
+      return ScanType.PDF417_SCAN_TYPE;
+    case 19:
+      return ScanType.CODE39_SCAN_TYPE;
+    case 32:
+      return ScanType.CODE93_SCAN_TYPE;
+    case 64:
+      return ScanType.CODE128_SCAN_TYPE;
+    case 128:
+      return ScanType.EAN13_SCAN_TYPE;
+    case 256:
       return ScanType.EAN8_SCAN_TYPE;
-    case 9:
+    case 512:
       return ScanType.ITF14_SCAN_TYPE;
-    case 10:
+    case 1024:
       return ScanType.UPCCODE_A_SCAN_TYPE;
-    case 11:
+    case 2048:
       return ScanType.UPCCODE_E_SCAN_TYPE;
-    case 12:
+    case 4096:
       return ScanType.CODABAR_SCAN_TYPE;
     default:
       return ScanType.FORMAT_UNKNOWN;
@@ -85,31 +85,31 @@ enum ScanType {
   ///扫码类型设置-扫描所有条码类型。
   ALL_SCAN_TYPE, //0
   ///QR Code条码类型。
-  QRCODE_SCAN_TYPE, //0
+  QRCODE_SCAN_TYPE, //1
   ///Aztec条码类型。
-  AZTEC_SCAN_TYPE, //1
+  AZTEC_SCAN_TYPE, //2
   ///Data Matrix条码类型。
-  DATAMATRIX_SCAN_TYPE, //2
+  DATAMATRIX_SCAN_TYPE, //4
   ///PDF417条码类型。
-  PDF417_SCAN_TYPE, //3
+  PDF417_SCAN_TYPE, //8
   ///Code 39条码类型。
-  CODE39_SCAN_TYPE, //4
+  CODE39_SCAN_TYPE, //19
   ///Code 93条码类型。
-  CODE93_SCAN_TYPE, //5
+  CODE93_SCAN_TYPE, //32
   ///Code 128条码类型。
-  CODE128_SCAN_TYPE, //6
+  CODE128_SCAN_TYPE, //64
   ///EAN-13条码类型。
-  EAN13_SCAN_TYPE, //7
+  EAN13_SCAN_TYPE, //128
   ///EAN-8条码类型。
-  EAN8_SCAN_TYPE, //8
+  EAN8_SCAN_TYPE, //256
   ///ITF-14条码类型。
-  ITF14_SCAN_TYPE, //9
+  ITF14_SCAN_TYPE, //512
   ///UPC-A条码类型。
-  UPCCODE_A_SCAN_TYPE, //10
+  UPCCODE_A_SCAN_TYPE, //1024
   ///UPC-E条码类型。
-  UPCCODE_E_SCAN_TYPE, //11
+  UPCCODE_E_SCAN_TYPE, //2048
   ///Codabar条码类型。
-  CODABAR_SCAN_TYPE, //12
+  CODABAR_SCAN_TYPE, //4096
 }
 
 ScanTypeFormat getScanTypeFormat(int type) {
