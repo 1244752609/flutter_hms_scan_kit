@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.ara.flutter_scan_kit_example">
    <application
-        android:label="flutter_scan_kit_example"
+        android:label="ScanKit"
         android:icon="@mipmap/ic_launcher">
         <activity
             android:name=".MainActivity"
