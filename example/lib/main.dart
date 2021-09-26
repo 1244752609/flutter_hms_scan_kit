@@ -77,32 +77,34 @@ class _MyAppState extends State<MyApp> {
         body: Container(
           width: double.infinity,
           padding: EdgeInsets.symmetric(vertical: 50),
-          child: Column(
-            children: [
-              Text('类型: ${_scanResult?.scanType}\n'),
-              Text('内容类型: ${_scanResult?.scanTypeForm}\n'),
-              Text('扫码内容: ${_scanResult?.value}\n'),
-              ElevatedButton(
-                onPressed: scan,
-                child: Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 100),
-                  child: Text("扫描"),
+          child: SingleChildScrollView(
+            child: Column(
+              children: [
+                Text('类型: ${_scanResult?.scanType}\n'),
+                Text('内容类型: ${_scanResult?.scanTypeForm}\n'),
+                Text('扫码内容: ${_scanResult?.value}\n'),
+                ElevatedButton(
+                  onPressed: scan,
+                  child: Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 100),
+                    child: Text("扫描"),
+                  ),
                 ),
-              ),
-              SizedBox(height: 50),
-              Text('生成条码\n'),
-              if (_code != null)
-                Image.memory(Uint8List.fromList(_code!))
-              else
-                Container(),
-              ElevatedButton(
-                onPressed: generateCode,
-                child: Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 100),
-                  child: Text("生成条码"),
+                SizedBox(height: 50),
+                Text('生成条码\n'),
+                if (_code != null)
+                  Image.memory(Uint8List.fromList(_code!))
+                else
+                  Container(height: 300, color: Colors.transparent),
+                ElevatedButton(
+                  onPressed: generateCode,
+                  child: Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 100),
+                    child: Text("生成条码"),
+                  ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ),

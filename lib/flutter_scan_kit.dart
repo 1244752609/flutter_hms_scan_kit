@@ -17,8 +17,7 @@ class FlutterScanKit {
     var result = await _channel.invokeMethod('startScan') as Map;
     final scanType = result['scanType'] as int;
     final scanTypeForm = result['scanTypeForm'] as int;
-    final value =
-        result['valueByte'] != null ? result['value'] as String : null;
+    final value = result['value'] != null ? result['value'] as String : null;
     final valueByte =
         result['valueByte'] != null ? result['valueByte'] as List<int> : null;
     print("========> scanType: $scanType");
@@ -52,7 +51,10 @@ class FlutterScanKit {
       "logo": logo,
     };
     var result = await _channel.invokeMethod('generateCode', map) as Map;
-    final code = result['code'] as List<int>;
-    return code;
+    final code = result['code'] as List<Object?>;
+    final List<int> list  = code.map((item) {
+      return int.parse(item!.toString());
+    }).toList() ;
+    return list;
   }
 }
