@@ -36,13 +36,13 @@ Scan Kit可以直接返回码的原始内容，也可以针对使用特定内容
 
 ## 使用
 ~~~dart
-import 'package:flutter_scan_kit/flutter_scan_kit.dart';
-import 'package:flutter_scan_kit/scan_result.dart';
+import 'package:flutter_hms_scan_kit/flutter_hms_scan_kit.dart';
+import 'package:flutter_hms_scan_kit/scan_result.dart';
 
 ///扫码
 ScanResult? _scanResult;
 Future<void> scan() async {
-    _scanResult = await FlutterScanKit.scan;
+    _scanResult = await FlutterHmsScanKit.scan;
     setState(() {});
 }
 
@@ -61,7 +61,7 @@ class ScanResult {
 ///生成条码
 Future<void> generateCode() async {
   var bytes = await rootBundle.load("assets/images/ic_logo.png");
-  _code = await FlutterScanKit.generateCode(
+  _code = await FlutterHmsScanKit.generateCode(
     content: "这是条码",
     type: ScanType.QRCODE_SCAN_TYPE,
     width: 300,

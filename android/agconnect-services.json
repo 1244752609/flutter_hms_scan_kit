@@ -17,7 +17,7 @@
 		"project_id":"736430079245837997",
 		"app_id":"104494907",
 		"api_key":"CgB6e3x92Vl1jI7fT/TI7j+ASKSEdh2LSxlWLzAihGTebdHHcTUlV1IM9jN9lnUfhXantdQHO6e2eZehelVMpFsh",
-		"package_name":"com.ara.flutter_scan_kit_example"
+		"package_name":"com.ara._example"
 	},
 	"oauth_client":{
 		"client_id":"104494907",
@@ -25,17 +25,17 @@
 	},
 	"app_info":{
 		"app_id":"104494907",
-		"package_name":"com.ara.flutter_scan_kit_example"
+		"package_name":"com.ara._example"
 	},
 	"configuration_version":"3.0",
 	"appInfos":[
 		{
-			"package_name":"com.ara.flutter_scan_kit_example",
+			"package_name":"com.ara._example",
 			"client":{
 				"app_id":"104494907"
 			},
 			"app_info":{
-				"package_name":"com.ara.flutter_scan_kit_example",
+				"package_name":"com.ara._example",
 				"app_id":"104494907"
 			},
 			"oauth_client":{

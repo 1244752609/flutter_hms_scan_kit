@@ -1,4 +1,4 @@
-package com.ara.flutter_scan_kit
+package com.ara.flutter_hms_scan_kit
 
 import android.Manifest
 import android.app.Activity
@@ -26,8 +26,8 @@ import java.io.ByteArrayOutputStream
 import java.util.*
 
 
-/** FlutterScanKitPlugin */
-class FlutterScanKitPlugin : FlutterPlugin, MethodCallHandler, ActivityAware {
+/** FlutterHmsScanKitPlugin */
+class FlutterHmsScanKitPlugin : FlutterPlugin, MethodCallHandler, ActivityAware {
     private val CAMERA_REQ_CODE = 111
     private val REQUEST_CODE_SCAN = 0X01
 
@@ -41,7 +41,7 @@ class FlutterScanKitPlugin : FlutterPlugin, MethodCallHandler, ActivityAware {
     private var activity: Activity? = null
 
     override fun onAttachedToEngine(@NonNull flutterPluginBinding: FlutterPlugin.FlutterPluginBinding) {
-        channel = MethodChannel(flutterPluginBinding.binaryMessenger, "flutter_scan_kit")
+        channel = MethodChannel(flutterPluginBinding.binaryMessenger, "flutter_hms_scan_kit")
         channel.setMethodCallHandler(this)
     }
 

@@ -1,5 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-  package="com.ara.flutter_scan_kit">
+  package="com.ara.flutter_hms_scan_kit">
     <!--permission for WiFI post processing,not for scankit itself-->
     <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />

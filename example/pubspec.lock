@@ -62,7 +62,7 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
-  flutter_scan_kit:
+  flutter_hms_scan_kit:
     dependency: "direct main"
     description:
       path: ".."

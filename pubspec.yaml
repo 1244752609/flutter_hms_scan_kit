@@ -1,7 +1,7 @@
-name: flutter_scan_kit
+name: flutter_hms_scan_kit
 description: 华为统一扫码服务
 version: 0.0.1
-homepage: https://github.com/1244752609/flutter_scan_kit
+homepage: https://github.com/1244752609/flutter_hms_scan_kit
 
 environment:
   sdk: ">=2.12.0 <3.0.0"
@@ -27,10 +27,10 @@ flutter:
   plugin:
     platforms:
       android:
-        package: com.ara.flutter_scan_kit
-        pluginClass: FlutterScanKitPlugin
+        package: com.ara.flutter_hms_scan_kit
+        pluginClass: FlutterHmsScanKitPlugin
       ios:
-        pluginClass: FlutterScanKitPlugin
+        pluginClass: FlutterHmsScanKitPlugin
 
   # To add assets to your plugin package, add an assets section, like this:
   # assets:

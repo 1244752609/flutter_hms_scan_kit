@@ -7,7 +7,7 @@ public class SwiftFlutterScanKitPlugin: NSObject, FlutterPlugin, DefaultScanDele
     private var result: FlutterResult?
 
     public static func register(with registrar: FlutterPluginRegistrar) {
-        let channel = FlutterMethodChannel(name: "flutter_scan_kit", binaryMessenger: registrar.messenger())
+        let channel = FlutterMethodChannel(name: "flutter_hms_scan_kit", binaryMessenger: registrar.messenger())
         let instance = SwiftFlutterScanKitPlugin()
 
         instance.hostViewController = UIApplication.shared.delegate?.window??.rootViewController

@@ -3,8 +3,8 @@ import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_scan_kit/flutter_scan_kit.dart';
-import 'package:flutter_scan_kit/scan_result.dart';
+import 'package:flutter_hms_scan_kit/flutter_hms_scan_kit.dart';
+import 'package:flutter_hms_scan_kit/scan_result.dart';
 
 void main() {
   runApp(MyApp());
@@ -34,7 +34,7 @@ class _MyAppState extends State<MyApp> {
     // We also handle the message potentially returning null.
     try {
       platformVersion =
-          await FlutterScanKit.platformVersion ?? 'Unknown platform version';
+          await FlutterHmsScanKit.platformVersion ?? 'Unknown platform version';
     } on PlatformException {
       platformVersion = 'Failed to get platform version.';
     }
@@ -50,13 +50,13 @@ class _MyAppState extends State<MyApp> {
   }
 
   Future<void> scan() async {
-    _scanResult = await FlutterScanKit.scan;
+    _scanResult = await FlutterHmsScanKit.scan;
     setState(() {});
   }
 
   Future<void> generateCode() async {
     var bytes = await rootBundle.load("assets/images/ic_logo.png");
-    _code = await FlutterScanKit.generateCode(
+    _code = await FlutterHmsScanKit.generateCode(
       content: "这是条码",
       type: ScanType.QRCODE_SCAN_TYPE,
       width: 300,

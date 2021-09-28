@@ -1,4 +1,4 @@
-group 'com.ara.flutter_scan_kit'
+group 'com.ara.flutter_hms_scan_kit'
 version '1.0-SNAPSHOT'
 
 buildscript {

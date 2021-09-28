@@ -2,10 +2,10 @@ import 'dart:async';
 import 'dart:typed_data';
 
 import 'package:flutter/services.dart';
-import 'package:flutter_scan_kit/scan_result.dart';
+import 'package:flutter_hms_scan_kit/scan_result.dart';
 
-class FlutterScanKit {
-  static const MethodChannel _channel = const MethodChannel('flutter_scan_kit');
+class FlutterHmsScanKit {
+  static const MethodChannel _channel = const MethodChannel('flutter_hms_scan_kit');
 
   static Future<String?> get platformVersion async {
     final String? version = await _channel.invokeMethod('getPlatformVersion');

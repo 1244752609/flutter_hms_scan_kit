@@ -1,9 +1,9 @@
 import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:flutter_scan_kit/flutter_scan_kit.dart';
+import 'package:flutter_hms_scan_kit/flutter_hms_scan_kit.dart';
 
 void main() {
-  const MethodChannel channel = MethodChannel('flutter_scan_kit');
+  const MethodChannel channel = MethodChannel('flutter_hms_scan_kit');
 
   TestWidgetsFlutterBinding.ensureInitialized();
 
@@ -18,6 +18,6 @@ void main() {
   });
 
   test('getPlatformVersion', () async {
-    expect(await FlutterScanKit.platformVersion, '42');
+    expect(await FlutterHmsScanKit.platformVersion, '42');
   });
 }
