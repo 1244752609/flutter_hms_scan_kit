@@ -1,13 +1,13 @@
 PODS:
   - Flutter (1.0.0)
-  - flutter_scan_kit (0.0.1):
+  - flutter_hms_scan_kit (0.0.1):
     - Flutter
     - ScanKitFrameWork
   - ScanKitFrameWork (1.0.2.300)
 
 DEPENDENCIES:
   - Flutter (from `Flutter`)
-  - flutter_scan_kit (from `.symlinks/plugins/flutter_scan_kit/ios`)
+  - flutter_hms_scan_kit (from `.symlinks/plugins/flutter_hms_scan_kit/ios`)
 
 SPEC REPOS:
   trunk:
@@ -16,12 +16,12 @@ SPEC REPOS:
 EXTERNAL SOURCES:
   Flutter:
     :path: Flutter
-  flutter_scan_kit:
-    :path: ".symlinks/plugins/flutter_scan_kit/ios"
+  flutter_hms_scan_kit:
+    :path: ".symlinks/plugins/flutter_hms_scan_kit/ios"
 
 SPEC CHECKSUMS:
   Flutter: 434fef37c0980e73bb6479ef766c45957d4b510c
-  flutter_scan_kit: 5553fb1ce55cb0fa6b56b979ad1765ee92da2923
+  flutter_hms_scan_kit: f3d7adead23f18e2fff9c44ca5d37db5b50ec77c
   ScanKitFrameWork: 0ad578f3db0ef9b64dd0f533d10d10a52ce93c80
 
 PODFILE CHECKSUM: a75497545d4391e2d394c3668e20cfb1c2bbd4aa
