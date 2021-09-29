@@ -32,6 +32,8 @@ Scan Kit可以直接返回码的原始内容，也可以针对使用特定内容
 
 ## 导入
 ~~~
+dependencies:
+  flutter_hms_scan_kit: ^x.y.z
 ~~~
 
 ## 使用

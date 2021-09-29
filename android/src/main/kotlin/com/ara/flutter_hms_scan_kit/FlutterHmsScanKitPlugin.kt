@@ -7,6 +7,7 @@ import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.graphics.Color
+import android.util.Log
 import android.widget.Toast
 import androidx.annotation.NonNull
 import androidx.core.app.ActivityCompat
@@ -28,6 +29,7 @@ import java.util.*
 
 /** FlutterHmsScanKitPlugin */
 class FlutterHmsScanKitPlugin : FlutterPlugin, MethodCallHandler, ActivityAware {
+    private val TAG: String = FlutterHmsScanKitPlugin::javaClass.name
     private val CAMERA_REQ_CODE = 111
     private val REQUEST_CODE_SCAN = 0X01
 
@@ -88,11 +90,11 @@ class FlutterHmsScanKitPlugin : FlutterPlugin, MethodCallHandler, ActivityAware 
      */
     private fun requestPermission() {
         ActivityCompat.requestPermissions(
-            activity!!, arrayOf(
+                activity!!, arrayOf(
                 Manifest.permission.CAMERA, Manifest.permission.READ_EXTERNAL_STORAGE,
                 Manifest.permission.WRITE_EXTERNAL_STORAGE
-            ),
-            CAMERA_REQ_CODE
+        ),
+                CAMERA_REQ_CODE
         )
     }
 
@@ -107,9 +109,9 @@ class FlutterHmsScanKitPlugin : FlutterPlugin, MethodCallHandler, ActivityAware 
             //Default View Mode
             if (requestCode == CAMERA_REQ_CODE) {
                 ScanUtil.startScan(
-                    activity,
-                    REQUEST_CODE_SCAN,
-                    HmsScanAnalyzerOptions.Creator().create()
+                        activity,
+                        REQUEST_CODE_SCAN,
+                        HmsScanAnalyzerOptions.Creator().create()
                 )
             }
             false
@@ -122,22 +124,26 @@ class FlutterHmsScanKitPlugin : FlutterPlugin, MethodCallHandler, ActivityAware 
                 return@addActivityResultListener false
             }
             //Default View
-            if (requestCode == REQUEST_CODE_SCAN) {
-                val obj: HmsScan? = data.getParcelableExtra(ScanUtil.RESULT)
-                if (obj != null) {
-                    val map: MutableMap<String, Any> = HashMap()
-                    map["scanType"] = obj.getScanType()
-                    map["scanTypeForm"] = obj.getScanTypeForm()
-                    //获取条码原始的全部码值信息。只有当条码编码格式为UTF-8时才可以使用
-                    if (obj.getOriginalValue() != null)
-                        map["value"] = obj.getOriginalValue()
-                    //非UTF-8格式的条码使用
-                    if (obj.getOriginValueByte() != null)
-                        map["valueByte"] = obj.getOriginValueByte()
-                    result!!.success(map)
-                } else {
-                    result!!.success(HashMap<Any, Any>())
+            try {
+                if (requestCode == REQUEST_CODE_SCAN) {
+                    val obj: HmsScan? = data.getParcelableExtra(ScanUtil.RESULT)
+                    if (obj != null) {
+                        val map: MutableMap<String, Any> = HashMap()
+                        map["scanType"] = obj.getScanType()
+                        map["scanTypeForm"] = obj.getScanTypeForm()
+                        //获取条码原始的全部码值信息。只有当条码编码格式为UTF-8时才可以使用
+                        if (obj.getOriginalValue() != null)
+                            map["value"] = obj.getOriginalValue()
+                        //非UTF-8格式的条码使用
+                        if (obj.getOriginValueByte() != null)
+                            map["valueByte"] = obj.getOriginValueByte()
+                        result?.success(map)
+                    } else {
+                        result?.success(HashMap<Any, Any>())
+                    }
                 }
+            } catch (e: Exception) {
+                Log.e(TAG, "Failed to handle method call", e);
             }
             false
         }
@@ -147,9 +153,9 @@ class FlutterHmsScanKitPlugin : FlutterPlugin, MethodCallHandler, ActivityAware 
      * 生成条码
      */
     private fun generateCode(
-        content: String? = "", type: Int?,
-        width: Int?, height: Int?, color: String?,
-        logo: ByteArray?
+            content: String? = "", type: Int?,
+            width: Int?, height: Int?, color: String?,
+            logo: ByteArray?
     ) {
         if (content == null || content.isEmpty()) {
             Toast.makeText(activity, "请输入生成内容", Toast.LENGTH_SHORT).show()
@@ -158,7 +164,7 @@ class FlutterHmsScanKitPlugin : FlutterPlugin, MethodCallHandler, ActivityAware 
         try {
             //Generate the barcode.
             val options = HmsBuildBitmapOption.Creator()
-                .setBitmapBackgroundColor(Color.WHITE)
+                    .setBitmapBackgroundColor(Color.WHITE)
             if (color != null && color.length == 7) {
                 val codeColor: Int = Color.parseColor(color)
                 options.setBitmapColor(codeColor)
@@ -167,14 +173,17 @@ class FlutterHmsScanKitPlugin : FlutterPlugin, MethodCallHandler, ActivityAware 
                 options.setQRLogoBitmap(byte2Bitmap(logo))
             }
             val bitmap = ScanUtil.buildBitmap(
-                content, type ?: HmsScan.QRCODE_SCAN_TYPE,
-                width ?: 500, height ?: 500, options.create()
+                    content, type ?: HmsScan.QRCODE_SCAN_TYPE,
+                    width ?: 500, height ?: 500, options.create()
             )
             val map: MutableMap<String, Any> = HashMap()
             map["code"] = bitmap2Byte(bitmap)
-            result!!.success(map)
+            result?.success(map)
         } catch (e: WriterException) {
+            Log.e(TAG, "参数错误", e);
             Toast.makeText(activity, "参数错误！", Toast.LENGTH_SHORT).show()
+        } catch (e: Exception) {
+            Log.e(TAG, "Failed to handle method call", e);
         }
     }
 
