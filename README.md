@@ -163,3 +163,4 @@ enum ScanTypeFormat {
 ## SDK数据安全说明
 Scan Kit不会收集个人数据，Android平台只会基于运营目的收集BI（Business Intelligence）数据，iOS平台不收集任何数据 。
 
+iOS配置Pods-targets-flutter_hms_scan_kit-Build Settings-Build Options-Enable Bitcode设置为NO
