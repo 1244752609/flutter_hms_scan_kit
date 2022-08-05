@@ -73,7 +73,11 @@ packages:
       name: material_color_utilities
       url: "https://pub.flutter-io.cn"
     source: hosted
+<<<<<<< HEAD
     version: "0.1.4"
+=======
+    version: "0.1.3"
+>>>>>>> e81e66f8ff449a865b76740e3a304a818fe90cee
   meta:
     dependency: transitive
     description:
@@ -134,14 +138,31 @@ packages:
       name: test_api
       url: "https://pub.flutter-io.cn"
     source: hosted
+<<<<<<< HEAD
     version: "0.4.9"
+=======
+    version: "0.4.8"
+  typed_data:
+    dependency: transitive
+    description:
+      name: typed_data
+      url: "https://pub.flutter-io.cn"
+    source: hosted
+    version: "1.3.0"
+>>>>>>> e81e66f8ff449a865b76740e3a304a818fe90cee
   vector_math:
     dependency: transitive
     description:
       name: vector_math
       url: "https://pub.flutter-io.cn"
     source: hosted
+<<<<<<< HEAD
     version: "2.1.2"
 sdks:
   dart: ">=2.17.0-0 <3.0.0"
+=======
+    version: "2.1.1"
+sdks:
+  dart: ">=2.14.0 <3.0.0"
+>>>>>>> e81e66f8ff449a865b76740e3a304a818fe90cee
   flutter: ">=1.20.0"

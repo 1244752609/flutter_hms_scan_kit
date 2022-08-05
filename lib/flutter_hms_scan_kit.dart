@@ -5,7 +5,9 @@ import 'package:flutter/services.dart';
 import 'package:flutter_hms_scan_kit/scan_result.dart';
 
 class FlutterHmsScanKit {
-  static const MethodChannel _channel = const MethodChannel('flutter_hms_scan_kit');
+  static const MethodChannel _channel =
+      const MethodChannel('flutter_hms_scan_kit');
+  static bool isClick = false;
 
   static Future<String?> get platformVersion async {
     final String? version = await _channel.invokeMethod('getPlatformVersion');
@@ -14,6 +16,10 @@ class FlutterHmsScanKit {
 
   ///扫码
   static Future<ScanResult?> get scan async {
+    if (isClick) return null;
+    isClick = true;
+    Future.delayed(Duration(milliseconds: 500), () => isClick = false);
+
     var result = await _channel.invokeMethod('startScan') as Map;
     final scanType = result['scanType'] as int;
     final scanTypeForm = result['scanTypeForm'] as int;
@@ -52,9 +58,9 @@ class FlutterHmsScanKit {
     };
     var result = await _channel.invokeMethod('generateCode', map) as Map;
     final code = result['code'] as List<Object?>;
-    final List<int> list  = code.map((item) {
+    final List<int> list = code.map((item) {
       return int.parse(item!.toString());
-    }).toList() ;
+    }).toList();
     return list;
   }
 }

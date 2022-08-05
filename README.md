@@ -16,6 +16,7 @@ Scan Kit支持Android和iOS系统集成。其中，Android系统集成Scan Kit�
 ## 支持的设备
 - Android 4.4及以上
 - iOS 9.0及以上 开发中
+- iOS 不支持armv7
 
 ## 扫码支持
 Scan Kit支持扫描13种全球主流的码制式。如果您的应用只处理部分特定的码制式，您也可以在setFormat中指定制式以便加快扫码速度，如果不指定，则默认处理所有支持的码制式。当前支持的码制式如下，后续将持续扩充。
@@ -32,6 +33,8 @@ Scan Kit可以直接返回码的原始内容，也可以针对使用特定内容
 
 ## 导入
 ~~~
+dependencies:
+  flutter_hms_scan_kit: ^x.y.z
 ~~~
 
 ## 使用
@@ -161,3 +164,5 @@ enum ScanTypeFormat {
 ## SDK数据安全说明
 Scan Kit不会收集个人数据，Android平台只会基于运营目的收集BI（Business Intelligence）数据，iOS平台不收集任何数据 。
 
+iOS配置Pods-targets-flutter_hms_scan_kit-Build Settings-Build Options-Enable Bitcode设置为NO
+ 
