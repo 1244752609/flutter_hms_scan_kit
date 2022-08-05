@@ -20,7 +20,7 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/flutter_hms_scan_kit/ios"
 
 SPEC CHECKSUMS:
-  Flutter: 434fef37c0980e73bb6479ef766c45957d4b510c
+  Flutter: 50d75fe2f02b26cc09d224853bb45737f8b3214a
   flutter_hms_scan_kit: f3d7adead23f18e2fff9c44ca5d37db5b50ec77c
   ScanKitFrameWork: 0ad578f3db0ef9b64dd0f533d10d10a52ce93c80
 
