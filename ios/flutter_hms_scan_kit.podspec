@@ -15,9 +15,9 @@ Pod::Spec.new do |s|
   s.source           = { :path => '.' }
   s.source_files = 'Classes/**/*'
   s.dependency 'Flutter'
-  s.dependency 'ScanKitFrameWork'
+  s.dependency 'ScanKitFrameWork', '~> 1.1.0.303'
   s.platform = :ios, '11.0'
-  s.xcconfig = {'ENABLE_BITCODE' => 'NO'}
+  s.pod_target_xcconfig = {'ENABLE_BITCODE' => 'NO'}
 
   # Flutter.framework does not contain a i386 slice.
   s.pod_target_xcconfig = { 'DEFINES_MODULE' => 'YES', 'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'i386' }

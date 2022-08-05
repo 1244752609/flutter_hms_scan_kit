@@ -15,7 +15,7 @@ Scan Kit支持Android和iOS系统集成。其中，Android系统集成Scan Kit�
 
 ## 支持的设备
 - Android 4.4及以上
-- iOS 9.0及以上 开发中
+- iOS 11.0及以上 开发中
 - iOS 不支持armv7
 
 ## 扫码支持
@@ -163,6 +163,4 @@ enum ScanTypeFormat {
 
 ## SDK数据安全说明
 Scan Kit不会收集个人数据，Android平台只会基于运营目的收集BI（Business Intelligence）数据，iOS平台不收集任何数据 。
-
-iOS配置Pods-targets-flutter_hms_scan_kit-Build Settings-Build Options-Enable Bitcode设置为NO
  
