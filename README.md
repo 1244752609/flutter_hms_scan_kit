@@ -160,7 +160,7 @@ enum ScanTypeFormat {
   VEHICLE_INFO_FORM, //10014
 }
 ~~~
-
+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
 ## SDK数据安全说明
 Scan Kit不会收集个人数据，Android平台只会基于运营目的收集BI（Business Intelligence）数据，iOS平台不收集任何数据 。
  
