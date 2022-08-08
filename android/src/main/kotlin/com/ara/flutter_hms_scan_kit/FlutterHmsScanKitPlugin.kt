@@ -92,7 +92,8 @@ class FlutterHmsScanKitPlugin : FlutterPlugin, MethodCallHandler, ActivityAware 
         ActivityCompat.requestPermissions(
                 activity!!, arrayOf(
                 Manifest.permission.CAMERA, Manifest.permission.READ_EXTERNAL_STORAGE,
-                Manifest.permission.WRITE_EXTERNAL_STORAGE
+                Manifest.permission.WRITE_EXTERNAL_STORAGE,
+                Manifest.permission.READ_PHONE_STATE,
         ),
                 CAMERA_REQ_CODE
         )
@@ -103,7 +104,9 @@ class FlutterHmsScanKitPlugin : FlutterPlugin, MethodCallHandler, ActivityAware 
             if (permissions == null || grantResults == null) {
                 return@addRequestPermissionsResultListener false
             }
-            if (grantResults.size < 2 || grantResults[0] != PackageManager.PERMISSION_GRANTED || grantResults[1] != PackageManager.PERMISSION_GRANTED) {
+            if (grantResults.size < 3 || grantResults[0] != PackageManager.PERMISSION_GRANTED ||
+                grantResults[1] != PackageManager.PERMISSION_GRANTED ||
+                grantResults[2] != PackageManager.PERMISSION_GRANTED) {
                 return@addRequestPermissionsResultListener false
             }
             //Default View Mode
