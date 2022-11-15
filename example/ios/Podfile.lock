@@ -1,9 +1,9 @@
 PODS:
   - Flutter (1.0.0)
-  - flutter_hms_scan_kit (1.0.2):
+  - flutter_hms_scan_kit (1.0.4):
     - Flutter
-    - ScanKitFrameWork (~> 1.1.0.303)
-  - ScanKitFrameWork (1.1.0.303)
+    - ScanKitFrameWork (~> 1.1.0.305)
+  - ScanKitFrameWork (1.1.0.305)
 
 DEPENDENCIES:
   - Flutter (from `Flutter`)
@@ -21,8 +21,8 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   Flutter: 50d75fe2f02b26cc09d224853bb45737f8b3214a
-  flutter_hms_scan_kit: a38be4a8931cd0ed01d94e210550cde8b53a87bc
-  ScanKitFrameWork: d9e20ebe14c3cca1dd342a74aa715b36625110df
+  flutter_hms_scan_kit: 7d1c884b64fb60f70cf38295f2fba41c2d9fee5b
+  ScanKitFrameWork: 0f41951fffe11820b6e530b947bc1a26725daac6
 
 PODFILE CHECKSUM: 7368163408c647b7eb699d0d788ba6718e18fb8d
 
