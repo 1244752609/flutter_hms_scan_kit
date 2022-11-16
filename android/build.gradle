@@ -2,7 +2,7 @@ group 'com.ara.flutter_hms_scan_kit'
 version '1.0-SNAPSHOT'
 
 buildscript {
-    ext.kotlin_version = '1.5.21'
+    ext.kotlin_version = '1.7.20'
     repositories {
         google()
         jcenter()
@@ -31,7 +31,7 @@ apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply plugin: 'com.huawei.agconnect'
 android {
-    compileSdkVersion 30
+    compileSdkVersion 33
 
     sourceSets {
         main.java.srcDirs += 'src/main/kotlin'
@@ -43,5 +43,5 @@ android {
 
 dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
-    implementation 'com.huawei.hms:scan:2.6.0.301'
+    implementation 'com.huawei.hms:scanplus:2.8.0.300'
 }

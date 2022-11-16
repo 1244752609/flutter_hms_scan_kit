@@ -24,7 +24,6 @@ import io.flutter.plugin.common.MethodChannel
 import io.flutter.plugin.common.MethodChannel.MethodCallHandler
 import io.flutter.plugin.common.MethodChannel.Result
 import java.io.ByteArrayOutputStream
-import java.util.*
 
 
 /** FlutterHmsScanKitPlugin */
@@ -105,8 +104,8 @@ class FlutterHmsScanKitPlugin : FlutterPlugin, MethodCallHandler, ActivityAware 
                 return@addRequestPermissionsResultListener false
             }
             if (grantResults.size < 3 || grantResults[0] != PackageManager.PERMISSION_GRANTED ||
-                grantResults[1] != PackageManager.PERMISSION_GRANTED ||
-                grantResults[2] != PackageManager.PERMISSION_GRANTED) {
+                    grantResults[1] != PackageManager.PERMISSION_GRANTED ||
+                    grantResults[2] != PackageManager.PERMISSION_GRANTED) {
                 return@addRequestPermissionsResultListener false
             }
             //Default View Mode
