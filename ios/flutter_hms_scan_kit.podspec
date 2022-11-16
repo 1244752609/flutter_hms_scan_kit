@@ -4,7 +4,7 @@
 #
 Pod::Spec.new do |s|
   s.name             = 'flutter_hms_scan_kit'
-  s.version          = '1.0.2'
+  s.version          = '1.0.4' #升级需要变动
   s.summary          = '华为统一扫码服务'
   s.description      = <<-DESC
 华为统一扫码服务
@@ -15,12 +15,12 @@ Pod::Spec.new do |s|
   s.source           = { :path => '.' }
   s.source_files = 'Classes/**/*'
   s.dependency 'Flutter'
-  s.dependency 'ScanKitFrameWork', '~> 1.1.0.303'
+  # 第一次更新使用pod install ，已经更新过使用pod update
+  s.dependency 'ScanKitFrameWork', '~> 1.1.0.305'
   s.platform = :ios, '11.0'
-  s.pod_target_xcconfig = {'ENABLE_BITCODE' => 'NO'}
 
   # Flutter.framework does not contain a i386 slice.
-  s.pod_target_xcconfig = { 'DEFINES_MODULE' => 'YES', 'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'i386' }
+  s.pod_target_xcconfig = { 'ENABLE_BITCODE' => 'NO', 'DEFINES_MODULE' => 'YES', 'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'i386' }
   s.swift_version = '5.0'
 
   # ScanKitFrameWork.framework 华为统一扫码服务
