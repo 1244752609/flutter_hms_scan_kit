@@ -131,8 +131,8 @@ class FlutterHmsScanKitPlugin : FlutterPlugin, MethodCallHandler, ActivityAware 
                     val obj: HmsScan? = data.getParcelableExtra(ScanUtil.RESULT)
                     if (obj != null) {
                         val map: MutableMap<String, Any> = HashMap()
-                        map["scanType"] = obj.getScanType()
-                        map["scanTypeForm"] = obj.getScanTypeForm()
+                        map["scanTypeForm"] = obj.getScanType()
+                        map["scanType"] = obj.getScanTypeForm()
                         //获取条码原始的全部码值信息。只有当条码编码格式为UTF-8时才可以使用
                         if (obj.getOriginalValue() != null)
                             map["value"] = obj.getOriginalValue()

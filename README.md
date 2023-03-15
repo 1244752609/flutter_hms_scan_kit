@@ -92,7 +92,7 @@ Future<void> generateCode() async {
 ## 扫码结果类型
 ~~~dart
 ///扫码结果信息
-enum ScanType {
+enum ScanTypeFormat {
   ///无法识别扫描条码类型。
   FORMAT_UNKNOWN, //-1
   ///扫码类型设置-扫描所有条码类型。
@@ -129,7 +129,7 @@ enum ScanType {
 ## 条码内容类型
 ~~~dart
 ///条码内容类型
-enum ScanTypeFormat {
+enum ScanType {
   ///商品条码
   ARTICLE_NUMBER_FORM, //1001
   ///邮件
