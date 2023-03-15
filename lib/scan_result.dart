@@ -12,66 +12,66 @@ class ScanResult {
   List<int>? valueByte;
 }
 
-ScanType getScanType(int type) {
+ScanTypeFormat getScanTypeFormat(int type) {
   switch (type) {
     case 1:
-      return ScanType.QRCODE_SCAN_TYPE;
+      return ScanTypeFormat.QRCODE_SCAN_TYPE;
     case 2:
-      return ScanType.AZTEC_SCAN_TYPE;
+      return ScanTypeFormat.AZTEC_SCAN_TYPE;
     case 4:
-      return ScanType.DATAMATRIX_SCAN_TYPE;
+      return ScanTypeFormat.DATAMATRIX_SCAN_TYPE;
     case 8:
-      return ScanType.PDF417_SCAN_TYPE;
-    case 19:
-      return ScanType.CODE39_SCAN_TYPE;
+      return ScanTypeFormat.PDF417_SCAN_TYPE;
+    case 16:
+      return ScanTypeFormat.CODE39_SCAN_TYPE;
     case 32:
-      return ScanType.CODE93_SCAN_TYPE;
+      return ScanTypeFormat.CODE93_SCAN_TYPE;
     case 64:
-      return ScanType.CODE128_SCAN_TYPE;
+      return ScanTypeFormat.CODE128_SCAN_TYPE;
     case 128:
-      return ScanType.EAN13_SCAN_TYPE;
+      return ScanTypeFormat.EAN13_SCAN_TYPE;
     case 256:
-      return ScanType.EAN8_SCAN_TYPE;
+      return ScanTypeFormat.EAN8_SCAN_TYPE;
     case 512:
-      return ScanType.ITF14_SCAN_TYPE;
+      return ScanTypeFormat.ITF14_SCAN_TYPE;
     case 1024:
-      return ScanType.UPCCODE_A_SCAN_TYPE;
+      return ScanTypeFormat.UPCCODE_A_SCAN_TYPE;
     case 2048:
-      return ScanType.UPCCODE_E_SCAN_TYPE;
+      return ScanTypeFormat.UPCCODE_E_SCAN_TYPE;
     case 4096:
-      return ScanType.CODABAR_SCAN_TYPE;
+      return ScanTypeFormat.CODABAR_SCAN_TYPE;
     default:
-      return ScanType.FORMAT_UNKNOWN;
+      return ScanTypeFormat.FORMAT_UNKNOWN;
   }
 }
 
-int scanType(ScanType type) {
+int scanType(ScanTypeFormat type) {
   switch (type) {
-    case ScanType.QRCODE_SCAN_TYPE:
+    case ScanTypeFormat.QRCODE_SCAN_TYPE:
       return 0;
-    case ScanType.AZTEC_SCAN_TYPE:
+    case ScanTypeFormat.AZTEC_SCAN_TYPE:
       return 1;
-    case ScanType.DATAMATRIX_SCAN_TYPE:
+    case ScanTypeFormat.DATAMATRIX_SCAN_TYPE:
       return 2;
-    case ScanType.PDF417_SCAN_TYPE:
+    case ScanTypeFormat.PDF417_SCAN_TYPE:
       return 3;
-    case ScanType.CODE39_SCAN_TYPE:
+    case ScanTypeFormat.CODE39_SCAN_TYPE:
       return 4;
-    case ScanType.CODE93_SCAN_TYPE:
+    case ScanTypeFormat.CODE93_SCAN_TYPE:
       return 5;
-    case ScanType.CODE128_SCAN_TYPE:
+    case ScanTypeFormat.CODE128_SCAN_TYPE:
       return 6;
-    case ScanType.EAN13_SCAN_TYPE:
+    case ScanTypeFormat.EAN13_SCAN_TYPE:
       return 7;
-    case ScanType.EAN8_SCAN_TYPE:
+    case ScanTypeFormat.EAN8_SCAN_TYPE:
       return 8;
-    case ScanType.ITF14_SCAN_TYPE:
+    case ScanTypeFormat.ITF14_SCAN_TYPE:
       return 9;
-    case ScanType.UPCCODE_A_SCAN_TYPE:
+    case ScanTypeFormat.UPCCODE_A_SCAN_TYPE:
       return 10;
-    case ScanType.UPCCODE_E_SCAN_TYPE:
+    case ScanTypeFormat.UPCCODE_E_SCAN_TYPE:
       return 11;
-    case ScanType.CODABAR_SCAN_TYPE:
+    case ScanTypeFormat.CODABAR_SCAN_TYPE:
       return 12;
     default:
       return 0;
@@ -79,7 +79,7 @@ int scanType(ScanType type) {
 }
 
 ///扫码结果信息
-enum ScanType {
+enum ScanTypeFormat {
   ///无法识别扫描条码类型。
   FORMAT_UNKNOWN, //-1
   ///扫码类型设置-扫描所有条码类型。
@@ -93,7 +93,7 @@ enum ScanType {
   ///PDF417条码类型。
   PDF417_SCAN_TYPE, //8
   ///Code 39条码类型。
-  CODE39_SCAN_TYPE, //19
+  CODE39_SCAN_TYPE, //16
   ///Code 93条码类型。
   CODE93_SCAN_TYPE, //32
   ///Code 128条码类型。
@@ -112,43 +112,43 @@ enum ScanType {
   CODABAR_SCAN_TYPE, //4096
 }
 
-ScanTypeFormat getScanTypeFormat(int type) {
+ScanType getScanType(int type) {
   switch (type) {
     case 1001:
-      return ScanTypeFormat.ARTICLE_NUMBER_FORM;
+      return ScanType.ARTICLE_NUMBER_FORM;
     case 1002:
-      return ScanTypeFormat.EMAIL_CONTENT_FORM;
+      return ScanType.EMAIL_CONTENT_FORM;
     case 1003:
-      return ScanTypeFormat.TEL_PHONE_NUMBER_FORM;
+      return ScanType.TEL_PHONE_NUMBER_FORM;
     case 1004:
-      return ScanTypeFormat.PURE_TEXT_FORM;
+      return ScanType.PURE_TEXT_FORM;
     case 1005:
-      return ScanTypeFormat.SMS_FORM;
+      return ScanType.SMS_FORM;
     case 1006:
-      return ScanTypeFormat.URL_FORM;
+      return ScanType.URL_FORM;
     case 1007:
-      return ScanTypeFormat.WIFI_CONNECT_INFO_FORM;
+      return ScanType.WIFI_CONNECT_INFO_FORM;
     case 1008:
-      return ScanTypeFormat.EVENT_INFO_FORM;
+      return ScanType.EVENT_INFO_FORM;
     case 1009:
-      return ScanTypeFormat.CONTACT_DETAIL_FORM;
+      return ScanType.CONTACT_DETAIL_FORM;
     case 10010:
-      return ScanTypeFormat.DRIVER_INFO_FORM;
+      return ScanType.DRIVER_INFO_FORM;
     case 10011:
-      return ScanTypeFormat.LOCATION_COORDINATE_FORM;
+      return ScanType.LOCATION_COORDINATE_FORM;
     case 10012:
-      return ScanTypeFormat.ISBN_NUMBER_FORM;
+      return ScanType.ISBN_NUMBER_FORM;
     case 10013:
-      return ScanTypeFormat.BOOK_MARK_FORM;
+      return ScanType.BOOK_MARK_FORM;
     case 10014:
-      return ScanTypeFormat.VEHICLE_INFO_FORM;
+      return ScanType.VEHICLE_INFO_FORM;
     default:
-      return ScanTypeFormat.PURE_TEXT_FORM;
+      return ScanType.PURE_TEXT_FORM;
   }
 }
 
 ///条码内容类型
-enum ScanTypeFormat {
+enum ScanType {
   ///商品条码
   ARTICLE_NUMBER_FORM, //1001
   ///邮件

@@ -58,7 +58,7 @@ class _MyAppState extends State<MyApp> {
     var bytes = await rootBundle.load("assets/images/ic_logo.png");
     _code = await FlutterHmsScanKit.generateCode(
       content: "这是条码",
-      type: ScanType.QRCODE_SCAN_TYPE,
+      type: ScanTypeFormat.QRCODE_SCAN_TYPE,
       width: 300,
       height: 300,
       color: "#7CB342",
@@ -80,8 +80,8 @@ class _MyAppState extends State<MyApp> {
           child: SingleChildScrollView(
             child: Column(
               children: [
-                Text('类型: ${_scanResult?.scanType}\n'),
-                Text('内容类型: ${_scanResult?.scanTypeForm}\n'),
+                Text('类型: ${_scanResult?.scanTypeForm}\n'),
+                Text('内容类型: ${_scanResult?.scanType}\n'),
                 Text('扫码内容: ${_scanResult?.value}\n'),
                 ElevatedButton(
                   onPressed: scan,

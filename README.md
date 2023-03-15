@@ -106,7 +106,7 @@ enum ScanType {
   ///PDF417条码类型。
   PDF417_SCAN_TYPE, //8
   ///Code 39条码类型。
-  CODE39_SCAN_TYPE, //19
+  CODE39_SCAN_TYPE, //16
   ///Code 93条码类型。
   CODE93_SCAN_TYPE, //32
   ///Code 128条码类型。

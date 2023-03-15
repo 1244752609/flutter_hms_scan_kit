@@ -1,3 +1,6 @@
+## 1.0.5
+* 修复ios scanType、scanTypeForm错误
+
 ## 1.0.4
 * 升级华为统一扫码SDK
 

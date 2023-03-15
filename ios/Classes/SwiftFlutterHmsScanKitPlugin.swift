@@ -100,17 +100,21 @@ public class SwiftFlutterHmsScanKitPlugin: NSObject, FlutterPlugin, DefaultScanD
     
     public func defaultScanDelegate(forDicResult resultDic: [AnyHashable: Any]!) {
         DispatchQueue.main.async {
-            print("formatValue: \(String(describing: resultDic["formatValue"]))")
+            let formatValue: String = String(describing: resultDic!["formatValue"]!)
+            print("formatValue: \(resultDic?["formatValue"] ?? "")")
+            print("formatValue: \(formatValue)")
+            print("formatValue: \(self.getScanType(formatValue: formatValue))")
             print("text: \(String(describing: resultDic["text"]))")
             let parserDic: [String: String]? = resultDic["parserDic"] as? [String: String]
             print("sceneType: \(parserDic?["sceneType"] ?? "")")
+            print("sceneType: \(self.getScanTypeFormat(formatValue: parserDic?["sceneType"]! ?? ""))")
             let bytes: [String]? = resultDic["rawBytes"] as? [String]
             print("rawBytes: \(bytes ?? [String]())")
 
             self.result?([
-                "scanType": self.getScanType(formatValue: String(describing: resultDic!["formatValue"])),
+                "scanTypeForm": self.getScanType(formatValue: formatValue),
                 "value": resultDic!["text"],
-                "scanTypeForm": self.getScanTypeFormat(formatValue: parserDic?["sceneType"] ?? ""),
+                "scanType": self.getScanTypeFormat(formatValue: parserDic?["sceneType"] ?? ""),
             ])
         }
     }
@@ -121,51 +125,54 @@ public class SwiftFlutterHmsScanKitPlugin: NSObject, FlutterPlugin, DefaultScanD
 
         DispatchQueue.main.async {
             if resultDic != nil {
-                print("formatValue: \(String(describing: resultDic!["formatValue"]))")
+                let formatValue: String = String(describing: resultDic!["formatValue"]!)
+                print("formatValue: \(resultDic!["formatValue"]!)")
+                print("formatValue: \(self.getScanType(formatValue:formatValue))")
                 print("text: \(String(describing: resultDic!["text"]))")
                 let parserDic: [String: String]? = resultDic!["parserDic"] as? [String: String]
                 print("sceneType: \(parserDic?["sceneType"] ?? "")")
+                print("sceneType: \(self.getScanTypeFormat(formatValue: parserDic?["sceneType"] ?? ""))")
                 let bytes: [String]? = resultDic!["rawBytes"] as? [String]
                 print("rawBytes: \(bytes ?? [String]())")
 
                 self.result?([
-                    "scanType": self.getScanType(formatValue: String(describing: resultDic!["formatValue"])),
+                    "scanTypeForm": self.getScanType(formatValue: formatValue),
                     "value": resultDic!["text"],
-                    "scanTypeForm": self.getScanTypeFormat(formatValue: parserDic?["sceneType"] ?? ""),
+                    "scanType": self.getScanTypeFormat(formatValue: parserDic?["sceneType"] ?? ""),
                 ])
             }
         }
     }
 
     //获取扫码类型编码
-    func getScanType(formatValue: String) -> Int {
+    func getScanType(formatValue: String?) -> Int {
         switch formatValue {
         case "QR_CODE":
-            return 0
-        case "AZTEC":
             return 1
-        case "DATA_MATRIX":
+        case "AZTEC":
             return 2
-        case "PDF_417":
-            return 3
-        case "CODE_39":
+        case "DATA_MATRIX":
             return 4
-        case "CODE_93":
-            return 5
-        case "CODE_128":
-            return 6
-        case "EAN_13":
-            return 7
-        case "EAN_8":
+        case "PDF_417":
             return 8
+        case "CODE_39":
+            return 16
+        case "CODE_93":
+            return 32
+        case "CODE_128":
+            return 64
+        case "EAN_13":
+            return 128
+        case "EAN_8":
+            return 256
         case "ITF":
-            return 9
+            return 512
         case "UPC_A":
-            return 10
+            return 1024
         case "UPC_E":
-            return 11
+            return 2048
         case "CODABAR":
-            return 12
+            return 4096
         default:
             return 0
         }

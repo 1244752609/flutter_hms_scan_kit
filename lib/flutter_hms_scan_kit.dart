@@ -41,7 +41,7 @@ class FlutterHmsScanKit {
   ///生产条码
   static Future<List<int>?> generateCode({
     String content = "", //内容
-    ScanType type = ScanType.QRCODE_SCAN_TYPE, //码类型 ScanType
+    ScanTypeFormat type = ScanTypeFormat.QRCODE_SCAN_TYPE, //码类型 ScanType
     int width = 500, //宽
     int height = 500, //高
     String color = "#000000", //码颜色
