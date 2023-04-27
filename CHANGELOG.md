@@ -1,3 +1,6 @@
+## 1.0.6
+* 添加测试Toast，修改MethodChannel名称
+
 ## 1.0.5
 * 修复ios scanType、scanTypeForm错误
 

@@ -4,7 +4,7 @@
 #
 Pod::Spec.new do |s|
   s.name             = 'flutter_hms_scan_kit'
-  s.version          = '1.0.5' #升级需要变动
+  s.version          = '1.0.6' #升级需要变动
   s.summary          = '华为统一扫码服务'
   s.description      = <<-DESC
 华为统一扫码服务
@@ -16,7 +16,7 @@ Pod::Spec.new do |s|
   s.source_files = 'Classes/**/*'
   s.dependency 'Flutter'
   # 第一次更新使用pod install ，已经更新过使用pod update
-  s.dependency 'ScanKitFrameWork', '~> 1.1.0.305'
+  s.dependency 'ScanKitFrameWork', '~> 1.1.0.306'
   s.platform = :ios, '11.0'
 
   # Flutter.framework does not contain a i386 slice.

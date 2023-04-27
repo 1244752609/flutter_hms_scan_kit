@@ -2,8 +2,8 @@ PODS:
   - Flutter (1.0.0)
   - flutter_hms_scan_kit (1.0.4):
     - Flutter
-    - ScanKitFrameWork (~> 1.1.0.305)
-  - ScanKitFrameWork (1.1.0.305)
+    - ScanKitFrameWork (~> 1.1.0.306)
+  - ScanKitFrameWork (1.1.0.306)
 
 DEPENDENCIES:
   - Flutter (from `Flutter`)

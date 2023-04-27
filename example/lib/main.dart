@@ -50,7 +50,10 @@ class _MyAppState extends State<MyApp> {
   }
 
   Future<void> scan() async {
-    _scanResult = await FlutterHmsScanKit.scan;
+    // _scanResult = await FlutterHmsScanKit.scan;
+    _scanResult = await FlutterHmsScanKit.startScan(
+      isToastDebug: false,
+    );
     setState(() {});
   }
 

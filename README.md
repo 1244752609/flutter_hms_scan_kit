@@ -44,8 +44,14 @@ import 'package:flutter_hms_scan_kit/scan_result.dart';
 
 ///扫码
 ScanResult? _scanResult;
+///方式一
 Future<void> scan() async {
     _scanResult = await FlutterHmsScanKit.scan;
+    setState(() {});
+}
+///方式二
+Future<void> scan() async {
+    _scanResult = await FlutterHmsScanKit.startScan();
     setState(() {});
 }
 

@@ -42,17 +42,26 @@ class FlutterHmsScanKitPlugin : FlutterPlugin, MethodCallHandler, ActivityAware 
     private var activity: Activity? = null
 
     override fun onAttachedToEngine(@NonNull flutterPluginBinding: FlutterPlugin.FlutterPluginBinding) {
-        channel = MethodChannel(flutterPluginBinding.binaryMessenger, "flutter_hms_scan_kit")
+        channel =
+            MethodChannel(flutterPluginBinding.binaryMessenger, "com.ara.flutter_hms_scan_kit")
         channel.setMethodCallHandler(this)
     }
 
     override fun onMethodCall(@NonNull call: MethodCall, @NonNull result: Result) {
         this.result = result
+        var isToast: Boolean? = call.argument("isToast")
+        if (isToast == null) isToast = false;
         if (call.method == "getPlatformVersion") {
+            if (isToast)
+                Toast.makeText(activity, "开始获取系统版本", Toast.LENGTH_SHORT).show()
             result.success("Android ${android.os.Build.VERSION.RELEASE}")
         } else if (call.method == "startScan") {//扫码
+            if (isToast)
+                Toast.makeText(activity, "开始扫码", Toast.LENGTH_SHORT).show()
             requestPermission()
         } else if (call.method == "generateCode") {//生产条码
+            if (isToast)
+                Toast.makeText(activity, "开始生成二维码", Toast.LENGTH_SHORT).show()
             val content: String? = call.argument("content")
             val type: Int? = call.argument("type")
             val width: Int? = call.argument("width")
@@ -89,12 +98,12 @@ class FlutterHmsScanKitPlugin : FlutterPlugin, MethodCallHandler, ActivityAware 
      */
     private fun requestPermission() {
         ActivityCompat.requestPermissions(
-                activity!!, arrayOf(
+            activity!!, arrayOf(
                 Manifest.permission.CAMERA, Manifest.permission.READ_EXTERNAL_STORAGE,
                 Manifest.permission.WRITE_EXTERNAL_STORAGE,
                 Manifest.permission.READ_PHONE_STATE,
-        ),
-                CAMERA_REQ_CODE
+            ),
+            CAMERA_REQ_CODE
         )
     }
 
@@ -104,16 +113,17 @@ class FlutterHmsScanKitPlugin : FlutterPlugin, MethodCallHandler, ActivityAware 
                 return@addRequestPermissionsResultListener false
             }
             if (grantResults.size < 3 || grantResults[0] != PackageManager.PERMISSION_GRANTED ||
-                    grantResults[1] != PackageManager.PERMISSION_GRANTED ||
-                    grantResults[2] != PackageManager.PERMISSION_GRANTED) {
+                grantResults[1] != PackageManager.PERMISSION_GRANTED ||
+                grantResults[2] != PackageManager.PERMISSION_GRANTED
+            ) {
                 return@addRequestPermissionsResultListener false
             }
             //Default View Mode
             if (requestCode == CAMERA_REQ_CODE) {
                 ScanUtil.startScan(
-                        activity,
-                        REQUEST_CODE_SCAN,
-                        HmsScanAnalyzerOptions.Creator().create()
+                    activity,
+                    REQUEST_CODE_SCAN,
+                    HmsScanAnalyzerOptions.Creator().create()
                 )
             }
             false
@@ -155,9 +165,9 @@ class FlutterHmsScanKitPlugin : FlutterPlugin, MethodCallHandler, ActivityAware 
      * 生成条码
      */
     private fun generateCode(
-            content: String? = "", type: Int?,
-            width: Int?, height: Int?, color: String?,
-            logo: ByteArray?
+        content: String? = "", type: Int?,
+        width: Int?, height: Int?, color: String?,
+        logo: ByteArray?
     ) {
         if (content == null || content.isEmpty()) {
             Toast.makeText(activity, "请输入生成内容", Toast.LENGTH_SHORT).show()
@@ -166,7 +176,7 @@ class FlutterHmsScanKitPlugin : FlutterPlugin, MethodCallHandler, ActivityAware 
         try {
             //Generate the barcode.
             val options = HmsBuildBitmapOption.Creator()
-                    .setBitmapBackgroundColor(Color.WHITE)
+                .setBitmapBackgroundColor(Color.WHITE)
             if (color != null && color.length == 7) {
                 val codeColor: Int = Color.parseColor(color)
                 options.setBitmapColor(codeColor)
@@ -175,8 +185,8 @@ class FlutterHmsScanKitPlugin : FlutterPlugin, MethodCallHandler, ActivityAware 
                 options.setQRLogoBitmap(byte2Bitmap(logo))
             }
             val bitmap = ScanUtil.buildBitmap(
-                    content, type ?: HmsScan.QRCODE_SCAN_TYPE,
-                    width ?: 500, height ?: 500, options.create()
+                content, type ?: HmsScan.QRCODE_SCAN_TYPE,
+                width ?: 500, height ?: 500, options.create()
             )
             val map: MutableMap<String, Any> = HashMap()
             map["code"] = bitmap2Byte(bitmap)
