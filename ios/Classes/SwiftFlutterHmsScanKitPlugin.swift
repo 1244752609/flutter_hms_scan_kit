@@ -7,7 +7,7 @@ public class SwiftFlutterHmsScanKitPlugin: NSObject, FlutterPlugin, DefaultScanD
     private var result: FlutterResult?
 
     public static func register(with registrar: FlutterPluginRegistrar) {
-        let channel = FlutterMethodChannel(name: "flutter_hms_scan_kit", binaryMessenger: registrar.messenger())
+        let channel = FlutterMethodChannel(name: "Aar/FlutterHmsScanKit", binaryMessenger: registrar.messenger())
         let instance = SwiftFlutterHmsScanKitPlugin()
 
         instance.hostViewController = UIApplication.shared.delegate?.window??.rootViewController

@@ -43,7 +43,7 @@ class FlutterHmsScanKitPlugin : FlutterPlugin, MethodCallHandler, ActivityAware 
 
     override fun onAttachedToEngine(@NonNull flutterPluginBinding: FlutterPlugin.FlutterPluginBinding) {
         channel =
-            MethodChannel(flutterPluginBinding.binaryMessenger, "com.ara.flutter_hms_scan_kit")
+            MethodChannel(flutterPluginBinding.binaryMessenger, "Aar/FlutterHmsScanKit")
         channel.setMethodCallHandler(this)
     }
 
@@ -51,6 +51,8 @@ class FlutterHmsScanKitPlugin : FlutterPlugin, MethodCallHandler, ActivityAware 
         this.result = result
         var isToast: Boolean? = call.argument("isToast")
         if (isToast == null) isToast = false;
+        if (isToast)
+            Toast.makeText(activity, "插件通信正常", Toast.LENGTH_SHORT).show()
         if (call.method == "getPlatformVersion") {
             if (isToast)
                 Toast.makeText(activity, "开始获取系统版本", Toast.LENGTH_SHORT).show()

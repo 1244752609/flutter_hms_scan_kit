@@ -5,7 +5,7 @@ import 'package:flutter_hms_scan_kit/scan_result.dart';
 import 'package:flutter_hms_scan_kit/toast_utils.dart';
 
 class FlutterHmsScanKit {
-  static MethodChannel _channel = MethodChannel('com.ara.flutter_hms_scan_kit');
+  static MethodChannel _channel = MethodChannel('Aar/FlutterHmsScanKit');
   static bool isClick = false;
 
   static Future<String?> get platformVersion async {
@@ -32,23 +32,29 @@ class FlutterHmsScanKit {
     }
     if (isToastDebug) ToastUtils.showLong("调起原生扫码");
     Map<String, Object> map = {"isToast": isToastDebug};
-    var result = await _channel.invokeMethod('startScan', map) as Map;
-    final scanType = result['scanType'] as int;
-    final scanTypeForm = result['scanTypeForm'] as int;
-    final value = result['value'] != null ? result['value'] as String : null;
-    final valueByte =
-        result['valueByte'] != null ? result['valueByte'] as List<int> : null;
-    print("========> scanType: $scanType");
-    print("========> scanTypeForm: $scanTypeForm");
-    print("========> value: $value");
-    print("========> valueByte: $valueByte");
-    ScanResult scanResult = ScanResult();
-    scanResult.scanType = getScanType(scanType);
-    scanResult.scanTypeForm = getScanTypeFormat(scanTypeForm);
-    scanResult.value = value;
-    scanResult.valueByte = valueByte;
-    if (isToastDebug) ToastUtils.showLong("扫码成功：$value");
-    return scanResult;
+    try {
+      var result = await _channel.invokeMethod('startScan', map) as Map;
+      final scanType = result['scanType'] as int;
+      final scanTypeForm = result['scanTypeForm'] as int;
+      final value = result['value'] != null ? result['value'] as String : null;
+      final valueByte =
+          result['valueByte'] != null ? result['valueByte'] as List<int> : null;
+      print("========> scanType: $scanType");
+      print("========> scanTypeForm: $scanTypeForm");
+      print("========> value: $value");
+      print("========> valueByte: $valueByte");
+      ScanResult scanResult = ScanResult();
+      scanResult.scanType = getScanType(scanType);
+      scanResult.scanTypeForm = getScanTypeFormat(scanTypeForm);
+      scanResult.value = value;
+      scanResult.valueByte = valueByte;
+      if (isToastDebug) ToastUtils.showLong("扫码成功：$value");
+      return scanResult;
+    } catch (e) {
+      print(e);
+      ToastUtils.showLong("调起扫码失败：$e");
+      return null;
+    }
   }
 
   ///生产条码

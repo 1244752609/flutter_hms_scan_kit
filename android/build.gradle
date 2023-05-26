@@ -11,7 +11,7 @@ buildscript {
     }
 
     dependencies {
-        classpath 'com.android.tools.build:gradle:4.2.2'
+        classpath 'com.android.tools.build:gradle:7.1.2'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
         // 增加agcp插件配置，推荐您使用最新版本的agcp插件。
         classpath 'com.huawei.agconnect:agcp:1.6.0.300'
