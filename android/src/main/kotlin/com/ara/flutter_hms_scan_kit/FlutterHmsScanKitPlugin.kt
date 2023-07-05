@@ -99,8 +99,6 @@ class FlutterHmsScanKitPlugin : FlutterPlugin, MethodCallHandler, ActivityAware 
         ActivityCompat.requestPermissions(
             activity!!, arrayOf(
                 Manifest.permission.CAMERA,
-                Manifest.permission.READ_EXTERNAL_STORAGE,
-                Manifest.permission.WRITE_EXTERNAL_STORAGE,
                 Manifest.permission.READ_PHONE_STATE,
             ),
             CAMERA_REQ_CODE
@@ -128,20 +126,21 @@ class FlutterHmsScanKitPlugin : FlutterPlugin, MethodCallHandler, ActivityAware 
                 return@addRequestPermissionsResultListener false
             }
             if (grantResults.size > 1 && grantResults[1] != PackageManager.PERMISSION_GRANTED) {
-                println("请到“设置-权限”授予存储权限")
-                showToast("请到“设置-权限”授予存储权限")
-                return@addRequestPermissionsResultListener false
-            }
-            if (grantResults.size > 2 && grantResults[2] != PackageManager.PERMISSION_GRANTED) {
-                println("请到“设置-权限”授予存储权限")
-                showToast("请到“设置-权限”授予存储权限")
-                return@addRequestPermissionsResultListener false
-            }
-            if (grantResults.size > 3 && grantResults[3] != PackageManager.PERMISSION_GRANTED) {
                 println("请到“设置-权限”授予电话信息权限")
                 showToast("请到“设置-权限”授予电话信息权限")
                 return@addRequestPermissionsResultListener false
             }
+//            if (grantResults.size > 1 && grantResults[1] != PackageManager.PERMISSION_GRANTED) {
+//                println("请到“设置-权限”授予存储权限")
+//                showToast("请到“设置-权限”授予存储权限")
+//                return@addRequestPermissionsResultListener false
+//            }
+//            if (grantResults.size > 2 && grantResults[2] != PackageManager.PERMISSION_GRANTED) {
+//                println("请到“设置-权限”授予存储权限")
+//                showToast("请到“设置-权限”授予存储权限")
+//                return@addRequestPermissionsResultListener false
+//            }
+
             //Default View Mode
             if (requestCode == CAMERA_REQ_CODE) {
                 ScanUtil.startScan(
