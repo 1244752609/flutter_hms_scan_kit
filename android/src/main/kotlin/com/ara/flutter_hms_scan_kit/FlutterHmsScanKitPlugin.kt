@@ -8,6 +8,7 @@ import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.graphics.Color
 import android.util.Log
+import android.view.Gravity
 import android.widget.Toast
 import androidx.annotation.NonNull
 import androidx.core.app.ActivityCompat
@@ -51,19 +52,15 @@ class FlutterHmsScanKitPlugin : FlutterPlugin, MethodCallHandler, ActivityAware 
         this.result = result
         var isToast: Boolean? = call.argument("isToast")
         if (isToast == null) isToast = false;
-        if (isToast)
-            Toast.makeText(activity, "插件通信正常", Toast.LENGTH_SHORT).show()
+        if (isToast) showToast("插件通信正常")
         if (call.method == "getPlatformVersion") {
-            if (isToast)
-                Toast.makeText(activity, "开始获取系统版本", Toast.LENGTH_SHORT).show()
+            if (isToast) showToast("开始获取系统版本")
             result.success("Android ${android.os.Build.VERSION.RELEASE}")
         } else if (call.method == "startScan") {//扫码
-            if (isToast)
-                Toast.makeText(activity, "开始扫码", Toast.LENGTH_SHORT).show()
+            if (isToast) showToast("开始扫码")
             requestPermission()
         } else if (call.method == "generateCode") {//生产条码
-            if (isToast)
-                Toast.makeText(activity, "开始生成二维码", Toast.LENGTH_SHORT).show()
+            if (isToast) showToast("开始生成二维码")
             val content: String? = call.argument("content")
             val type: Int? = call.argument("type")
             val width: Int? = call.argument("width")
@@ -101,7 +98,8 @@ class FlutterHmsScanKitPlugin : FlutterPlugin, MethodCallHandler, ActivityAware 
     private fun requestPermission() {
         ActivityCompat.requestPermissions(
             activity!!, arrayOf(
-                Manifest.permission.CAMERA, Manifest.permission.READ_EXTERNAL_STORAGE,
+                Manifest.permission.CAMERA,
+                Manifest.permission.READ_EXTERNAL_STORAGE,
                 Manifest.permission.WRITE_EXTERNAL_STORAGE,
                 Manifest.permission.READ_PHONE_STATE,
             ),
@@ -109,15 +107,39 @@ class FlutterHmsScanKitPlugin : FlutterPlugin, MethodCallHandler, ActivityAware 
         )
     }
 
+    private fun showToast(text: String) {
+        val toast = Toast.makeText(activity, text, Toast.LENGTH_SHORT)
+        toast.setGravity(Gravity.CENTER, 0, 0)
+        toast.show()
+    }
+
     private fun onRequestPermissionsResultListener(binding: ActivityPluginBinding) {
         binding.addRequestPermissionsResultListener { requestCode: Int, permissions: Array<String?>?, grantResults: IntArray? ->
             if (permissions == null || grantResults == null) {
+                println("权限是否为空，permissions=${permissions == null}，grantResults=${grantResults == null}")
+                showToast("权限是否为空，permissions=${permissions == null}，grantResults=${grantResults == null}")
                 return@addRequestPermissionsResultListener false
             }
-            if (grantResults.size < 3 || grantResults[0] != PackageManager.PERMISSION_GRANTED ||
-                grantResults[1] != PackageManager.PERMISSION_GRANTED ||
-                grantResults[2] != PackageManager.PERMISSION_GRANTED
-            ) {
+            println("permissions size ${permissions.size}")
+            println("grantResults size ${grantResults.size}")
+            if (grantResults[0] != PackageManager.PERMISSION_GRANTED) {
+                println("请到“设置-权限”授予拍照权限")
+                showToast("请到“设置-权限”授予拍照权限")
+                return@addRequestPermissionsResultListener false
+            }
+            if (grantResults.size > 1 && grantResults[1] != PackageManager.PERMISSION_GRANTED) {
+                println("请到“设置-权限”授予存储权限")
+                showToast("请到“设置-权限”授予存储权限")
+                return@addRequestPermissionsResultListener false
+            }
+            if (grantResults.size > 2 && grantResults[2] != PackageManager.PERMISSION_GRANTED) {
+                println("请到“设置-权限”授予存储权限")
+                showToast("请到“设置-权限”授予存储权限")
+                return@addRequestPermissionsResultListener false
+            }
+            if (grantResults.size > 3 && grantResults[3] != PackageManager.PERMISSION_GRANTED) {
+                println("请到“设置-权限”授予电话信息权限")
+                showToast("请到“设置-权限”授予电话信息权限")
                 return@addRequestPermissionsResultListener false
             }
             //Default View Mode
@@ -128,7 +150,7 @@ class FlutterHmsScanKitPlugin : FlutterPlugin, MethodCallHandler, ActivityAware 
                     HmsScanAnalyzerOptions.Creator().create()
                 )
             }
-            false
+            true
         }
     }
 
