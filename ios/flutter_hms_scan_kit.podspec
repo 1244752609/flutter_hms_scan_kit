@@ -4,7 +4,7 @@
 #
 Pod::Spec.new do |s|
   s.name             = 'flutter_hms_scan_kit'
-  s.version          = '1.1.1' #升级需要变动
+  s.version          = '1.1.2' #升级需要变动
   s.summary          = '华为统一扫码服务'
   s.description      = <<-DESC
 华为统一扫码服务

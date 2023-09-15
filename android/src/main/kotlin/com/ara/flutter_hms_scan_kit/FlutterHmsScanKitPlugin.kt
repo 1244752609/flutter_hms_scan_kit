@@ -31,6 +31,7 @@ import java.io.ByteArrayOutputStream
 class FlutterHmsScanKitPlugin : FlutterPlugin, MethodCallHandler, ActivityAware {
     private val TAG: String = FlutterHmsScanKitPlugin::javaClass.name
     private val CAMERA_REQ_CODE = 111
+    private val STORAGE_REQ_CODE = 112
     private val REQUEST_CODE_SCAN = 0X01
 
     /// The MethodChannel that will the communication between Flutter and native Android
@@ -99,7 +100,7 @@ class FlutterHmsScanKitPlugin : FlutterPlugin, MethodCallHandler, ActivityAware 
         ActivityCompat.requestPermissions(
             activity!!, arrayOf(
                 Manifest.permission.CAMERA,
-                Manifest.permission.READ_PHONE_STATE,
+                Manifest.permission.READ_EXTERNAL_STORAGE,
             ),
             CAMERA_REQ_CODE
         )
@@ -120,14 +121,15 @@ class FlutterHmsScanKitPlugin : FlutterPlugin, MethodCallHandler, ActivityAware 
             }
             println("permissions size ${permissions.size}")
             println("grantResults size ${grantResults.size}")
+
             if (grantResults[0] != PackageManager.PERMISSION_GRANTED) {
                 println("请到“设置-权限”授予拍照权限")
                 showToast("请到“设置-权限”授予拍照权限")
                 return@addRequestPermissionsResultListener false
             }
             if (grantResults.size > 1 && grantResults[1] != PackageManager.PERMISSION_GRANTED) {
-                println("请到“设置-权限”授予电话信息权限")
-                showToast("请到“设置-权限”授予电话信息权限")
+                println("请到“设置-权限”授予存储权限")
+                showToast("请到“设置-权限”授予存储权限")
                 return@addRequestPermissionsResultListener false
             }
 //            if (grantResults.size > 1 && grantResults[1] != PackageManager.PERMISSION_GRANTED) {
