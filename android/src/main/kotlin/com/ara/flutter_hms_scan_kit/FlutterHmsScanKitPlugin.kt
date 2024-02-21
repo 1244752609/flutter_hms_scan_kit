@@ -7,6 +7,7 @@ import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.graphics.Color
+import android.os.Build
 import android.util.Log
 import android.view.Gravity
 import android.widget.Toast
@@ -97,13 +98,25 @@ class FlutterHmsScanKitPlugin : FlutterPlugin, MethodCallHandler, ActivityAware 
      * Apply for permissions.
      */
     private fun requestPermission() {
-        ActivityCompat.requestPermissions(
-            activity!!, arrayOf(
-                Manifest.permission.CAMERA,
-                Manifest.permission.READ_EXTERNAL_STORAGE,
-            ),
-            CAMERA_REQ_CODE
-        )
+        if (Build.VERSION.SDK_INT > Build.VERSION_CODES.S_V2) {
+            ActivityCompat.requestPermissions(
+                activity!!, arrayOf(
+                    Manifest.permission.CAMERA,
+                    Manifest.permission.READ_MEDIA_IMAGES,
+                    Manifest.permission.READ_MEDIA_VIDEO,
+                    Manifest.permission.READ_MEDIA_AUDIO,
+                ),
+                CAMERA_REQ_CODE
+            )
+        } else {
+            ActivityCompat.requestPermissions(
+                activity!!, arrayOf(
+                    Manifest.permission.CAMERA,
+                    Manifest.permission.READ_EXTERNAL_STORAGE,
+                ),
+                CAMERA_REQ_CODE
+            )
+        }
     }
 
     private fun showToast(text: String) {
@@ -127,21 +140,21 @@ class FlutterHmsScanKitPlugin : FlutterPlugin, MethodCallHandler, ActivityAware 
                 showToast("请到“设置-权限”授予拍照权限")
                 return@addRequestPermissionsResultListener false
             }
-            if (grantResults.size > 1 && grantResults[1] != PackageManager.PERMISSION_GRANTED) {
-                println("请到“设置-权限”授予存储权限")
-                showToast("请到“设置-权限”授予存储权限")
-                return@addRequestPermissionsResultListener false
+            if (Build.VERSION.SDK_INT > Build.VERSION_CODES.S_V2) {
+                if (grantResults.size > 1 && grantResults[1] != PackageManager.PERMISSION_GRANTED &&
+                    grantResults.size > 2 && grantResults[2] != PackageManager.PERMISSION_GRANTED &&
+                    grantResults.size > 3 && grantResults[3] != PackageManager.PERMISSION_GRANTED) {
+                    println("请到“设置-权限”授予读存储（媒体和文件）权限")
+                    showToast("请到“设置-权限”授予读存储（媒体和文件）权限")
+                    return@addRequestPermissionsResultListener false
+                }
+            } else {
+                if (grantResults.size > 1 && grantResults[1] != PackageManager.PERMISSION_GRANTED) {
+                    println("请到“设置-权限”授予读取权限")
+                    showToast("请到“设置-权限”授予读取权限")
+                    return@addRequestPermissionsResultListener false
+                }
             }
-//            if (grantResults.size > 1 && grantResults[1] != PackageManager.PERMISSION_GRANTED) {
-//                println("请到“设置-权限”授予存储权限")
-//                showToast("请到“设置-权限”授予存储权限")
-//                return@addRequestPermissionsResultListener false
-//            }
-//            if (grantResults.size > 2 && grantResults[2] != PackageManager.PERMISSION_GRANTED) {
-//                println("请到“设置-权限”授予存储权限")
-//                showToast("请到“设置-权限”授予存储权限")
-//                return@addRequestPermissionsResultListener false
-//            }
 
             //Default View Mode
             if (requestCode == CAMERA_REQ_CODE) {

@@ -1,7 +1,12 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-  package="com.ara.flutter_hms_scan_kit">
-    <!--文件读取权限-->
+    package="com.ara.flutter_hms_scan_kit">
+    <!--文件读取权限，Android 12及更低版本申请-->
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+
+    <!--读存储（媒体和文件）权限，Android 13及更高版本申请-->
+    <uses-permission android:name="android.permission.READ_MEDIA_IMAGES" />
+    <uses-permission android:name="android.permission.READ_MEDIA_VIDEO" />
+    <uses-permission android:name="android.permission.READ_MEDIA_AUDIO" />
 
     <!--permission for WiFI post processing,not for scankit itself-->
     <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
